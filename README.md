@@ -1,1 +1,1 @@
-drunk-party-game
+drunk party game
