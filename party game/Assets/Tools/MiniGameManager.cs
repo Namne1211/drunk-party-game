@@ -7,6 +7,8 @@ public class MiniGameManager : EditorWindow
 {
     public GameObject normalSample;
     public Transform Instantiator;
+    string cardContent;
+    string cardContentShow;
 
     [MenuItem("Tools/MiniGameEditor")]
         public static void Open()
@@ -28,11 +30,12 @@ public class MiniGameManager : EditorWindow
 
         if (Instantiator == null)
         {
-            EditorGUILayout.HelpBox("please assign an Instantiator", MessageType.Warning);
+            EditorGUILayout.HelpBox("please assign all variable", MessageType.Warning);
         }
         else
         {
 
+            cardContent = EditorGUILayout.TextField("Context", cardContent);
             EditorGUILayout.BeginVertical("box");
             DrawButtonNormal();
             EditorGUILayout.EndVertical();
@@ -45,40 +48,58 @@ public class MiniGameManager : EditorWindow
 
     void DrawButtonNormal()
     {
-
-        if (GUILayout.Button("create normal MiniGame"))
-        {
-            CreateNormaCard();
-        }
-
         if (Selection.activeGameObject != null && Selection.activeGameObject.GetComponent<Minigame>())
         {
-
+            
             if (GUILayout.Button("update content"))
             {
                 UpdateContent();
             }
 
-            if (GUILayout.Button("delete minigame"))
+            if (GUILayout.Button("delete Card"))
             {
                DeleteCard();
             }
-
+            
+        }
+        else
+        {
+            if (GUILayout.Button("create normal Card"))
+            {
+                CreateNormaCard();
+            }
+            
         }
     }
 
     void CreateNormaCard()
     {
-        Instantiate(normalSample,Instantiator);
+        if (cardContent == "")
+        {
+            Debug.LogError("Error: please fill in content");
+        }
+        else
+        {
+            GameObject newCard = Instantiate(normalSample, Instantiator);
+            Minigame card = newCard.GetComponent<Minigame>();
+            card.ChangeContent(cardContent);
+            Selection.activeGameObject = card.gameObject;
+        }
+        
+        //card.gameObject.SetActive(false);
     }
 
     void UpdateContent()
     {
-       
+        Minigame card = Selection.activeGameObject.GetComponent<Minigame>();
+        card.ChangeContent(cardContent);
     }
 
     void DeleteCard()
     {
+        Minigame card = Selection.activeGameObject.GetComponent<Minigame>();
+        if (card != null)
+        DestroyImmediate(card.gameObject);
 
     }
 }

@@ -5,16 +5,18 @@ using TMPro;
 
 public class Minigame : MonoBehaviour
 {
-    public string content;
-    public void Start()
+    TextMeshProUGUI tmp;
+    public GameObject textContainer;
+    public string text;
+
+
+    public void ChangeContent(string content)
     {
-        TextMeshPro tmp = GetComponent<TextMeshPro>();
+        tmp = textContainer.GetComponent<TextMeshProUGUI>();
+        text = content;
+        tmp.text = content;
     }
 
-    public void Update()
-    {
-        
-    }
 
 
 }
