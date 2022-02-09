@@ -5,8 +5,8 @@ using UnityEditor;
 
 public class MiniGameManager : EditorWindow
 {
-    public GameObject normalSample;
-    public Transform Instantiator;
+    public GameObject SampleCard;
+    public Transform Holder;
     string cardContent;
     string cardContentShow;
 
@@ -25,10 +25,10 @@ public class MiniGameManager : EditorWindow
         SerializedObject obj = new SerializedObject(this);
         GUILayout.Label("normal card", EditorStyles.boldLabel);
         //check if there is a root for way point or not
-        EditorGUILayout.PropertyField(obj.FindProperty("Instantiator"));
-        EditorGUILayout.ObjectField(obj.FindProperty("normalSample"));
+        EditorGUILayout.PropertyField(obj.FindProperty("Holder"));
+        EditorGUILayout.ObjectField(obj.FindProperty("SampleCard"));
 
-        if (Instantiator == null)
+        if (Holder == null)
         {
             EditorGUILayout.HelpBox("please assign all variable", MessageType.Warning);
         }
@@ -48,6 +48,10 @@ public class MiniGameManager : EditorWindow
 
     void DrawButtonNormal()
     {
+        if (GUILayout.Button("create normal Card"))
+        {
+            CreateNormaCard();
+        }
         if (Selection.activeGameObject != null && Selection.activeGameObject.GetComponent<Minigame>())
         {
             
@@ -62,14 +66,7 @@ public class MiniGameManager : EditorWindow
             }
             
         }
-        else
-        {
-            if (GUILayout.Button("create normal Card"))
-            {
-                CreateNormaCard();
-            }
-            
-        }
+
     }
 
     void CreateNormaCard()
@@ -80,19 +77,22 @@ public class MiniGameManager : EditorWindow
         }
         else
         {
-            GameObject newCard = Instantiate(normalSample, Instantiator);
+            GameObject newCard = Instantiate(SampleCard, new Vector3(0,0,0),new Quaternion(0,0,0,0),Holder);
             Minigame card = newCard.GetComponent<Minigame>();
             card.ChangeContent(cardContent);
             Selection.activeGameObject = card.gameObject;
+            //card.gameObject.SetActive(false);
+            cardContent = "";
         }
         
-        //card.gameObject.SetActive(false);
+        
     }
 
     void UpdateContent()
     {
         Minigame card = Selection.activeGameObject.GetComponent<Minigame>();
         card.ChangeContent(cardContent);
+        
     }
 
     void DeleteCard()
@@ -100,6 +100,7 @@ public class MiniGameManager : EditorWindow
         Minigame card = Selection.activeGameObject.GetComponent<Minigame>();
         if (card != null)
         DestroyImmediate(card.gameObject);
+        cardContent = "";
 
     }
 }
