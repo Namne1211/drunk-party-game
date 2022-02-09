@@ -19,7 +19,7 @@ public class ScoreManager : MonoBehaviour
         PlayerIcon.transform.GetChild(0).gameObject.SetActive(true);
         prevPlayerIcon = PlayerIcon.transform.GetChild(0).gameObject;
         
-        CurrentPlayer = 4;
+        CurrentPlayer =4;
         turnCycle = 0;
         P1Score = 0;
         P2Score = 0;
@@ -46,7 +46,7 @@ public class ScoreManager : MonoBehaviour
             case 3:
                 P3Score += 1;
                 break;
-            case 0:
+            case 4:
                 P4Score += 1;
                 break;
         }
@@ -56,15 +56,23 @@ public class ScoreManager : MonoBehaviour
         if (prevPlayerIcon != null)
         prevPlayerIcon.SetActive(false);
         resetCycle();
-        currentPlayer = PlayerIcon.transform.GetChild(turnCycle).gameObject;
+        if(turnCycle >= CurrentPlayer)
+        {
+            currentPlayer = PlayerIcon.transform.GetChild(0).gameObject;
+        }
+        else
+        {
+            currentPlayer = PlayerIcon.transform.GetChild(turnCycle).gameObject;
+        }
+        
         prevPlayerIcon = currentPlayer;
         currentPlayer.SetActive(true);
     }
     void resetCycle()
     {
-        if (turnCycle > CurrentPlayer - 1)
+        if (turnCycle > CurrentPlayer )
         {
-            turnCycle = 0;
+            turnCycle = 1;
         }
     }
 }
