@@ -4,29 +4,71 @@ using UnityEngine;
 
 public class GyroFunc : MonoBehaviour
 {
+    Rigidbody2D rb;
+    float AngleX;
+    float rotationRate = 20f;
+    float timeLeft=5f;
+    float RandomAngle;
+    float ChgDirtime;
+    bool chgDir=true;
+    public float ClampRate=15f;
+
     // Start is called before the first frame update
     void Start()
     {
-        if (SystemInfo.supportsGyroscope)
-        {
-            Input.gyro.enabled = true; 
-        }
+
+        rb= GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (SystemInfo.supportsGyroscope)
+        ChgDirtime -= Time.deltaTime;
+        timeLeft -= Time.deltaTime;
+        
+        AngleX = -Input.acceleration.x * rotationRate;
+
+        RandomRotate();
+
+        //clamp the angle
+        if (transform.eulerAngles.z <= 180)
         {
-            //transform.rotation = gyroToUnity(Input.gyro.attitude);
-            
+            transform.eulerAngles = new Vector3(0, 0, Mathf.Clamp(transform.rotation.eulerAngles.z, 0, ClampRate));
+        }else
+        {
+            transform.eulerAngles = new Vector3(0, 0, Mathf.Clamp(transform.rotation.eulerAngles.z, 360f - ClampRate, 360f));
         }
+        
+        //rotate base on the phone accelerator
+        rb.angularVelocity += Mathf.Clamp(AngleX, -15f, 15f);
+
+
     }
 
-    private Quaternion gyroToUnity(Quaternion q)
+    //random rotate some angle 
+    void RandomRotate()
     {
-        return new Quaternion(-q.x, q.y, 0, 0);
-    }
+        if (chgDir)
+        {
+            ChgDirtime = 2f;
+            RandomAngle = Random.Range(-0.4f, 0.4f)*rotationRate;
+            chgDir = false;
+        }
+        if (ChgDirtime < 0)
+        {
+            chgDir = true;
+        }
+        /*        if (transform.rotation.eulerAngles.z < 15 && transform.rotation.eulerAngles.z > -15)
+                {*/
+        //transform.Rotate(new Vector3(0, 0, RandomAngle));
+        //}
+        rb.angularVelocity = RandomAngle;
+
         
+
+
+
+
+    }
     
 }
