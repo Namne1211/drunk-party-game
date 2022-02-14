@@ -7,6 +7,7 @@ public class MiniGameInstantiate : MonoBehaviour
     // Start is called before the first frame update
     public List<Minigame> card = new List<Minigame>();
     public GameObject Holder;
+    public GameObject UICam;
     GameObject prevActive;
     ScoreManager scoreManager;
     private void Start()
