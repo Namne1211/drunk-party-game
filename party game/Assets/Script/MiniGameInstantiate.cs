@@ -12,6 +12,11 @@ public class MiniGameInstantiate : MonoBehaviour
     public GameObject PenaltyScreen;
     public GameObject currentScreen;
     public GameObject cardScreen;
+    public GameObject PenaltyHolder;
+    public GameObject normalText;
+    public GameObject interactiveText;
+    public string Currentinteractive;
+    bool penaltystate;
     GameObject prevActive;
     ScoreManager scoreManager;
     private void Start()
@@ -29,28 +34,53 @@ public class MiniGameInstantiate : MonoBehaviour
     {
         scoreManager.turnCycle += 1;
         scoreManager.UpdateIcon();
-        scoreManager.PointUpdate();
         runCycle();
     }
     public void NotDone()
     {
         scoreManager.turnCycle += 1;
         scoreManager.UpdateIcon();
-        runCycle();  
+        scoreManager.PointUpdate();
+        runCycle();
     }
+
     public void ARON()
-    {       
+    {
+        if (PenaltyScreen.active == true)
+        {
+            if (prevActive != null)
+                prevActive.SetActive(false);
+            int randomChildIdx = Random.Range(0, PenaltyHolder.transform.childCount);
+            GameObject randomChild = PenaltyHolder.transform.GetChild(randomChildIdx).gameObject;
+            prevActive = randomChild;
+            randomChild.SetActive(true);
+            penaltystate = true;
+        }
         UICam.SetActive(false);
         ARCam.SetActive(true);
     }
     public void AROff()
     {
+
         UICam.SetActive(true);
         ARCam.SetActive(false);
         scoreManager.PlayerIcon.SetActive(true);
-        cardScreen.SetActive(false);
-        PenaltyScreen.SetActive(false);
-        currentScreen.SetActive(true);
+
+        //case of penalty screen 
+        if (penaltystate)
+        {
+            cardScreen.SetActive(true);
+            PenaltyScreen.SetActive(false);
+            currentScreen.SetActive(false);
+            penaltystate = false;
+        }
+        else
+        {
+            cardScreen.SetActive(false);
+            PenaltyScreen.SetActive(false);
+            currentScreen.SetActive(true);
+        }
+
     }
     public void cardscreen()
     {
@@ -60,26 +90,35 @@ public class MiniGameInstantiate : MonoBehaviour
     }
     void runCycle()
     {
-        
+
         if (prevActive != null)
             prevActive.SetActive(false);
         int randomChildIdx = Random.Range(0, Holder.transform.childCount);
         GameObject randomChild = Holder.transform.GetChild(randomChildIdx).gameObject;
-        prevActive = randomChild;
-        if(randomChild.GetComponent<Minigame>() != null)
+        if (randomChild.GetComponent<Minigame>() != null)
         {
-            //Debug.Log("normal");
+            Currentinteractive = "";
+            normalText.SetActive(true);
+            interactiveText.SetActive(false);
         }
+        else
+        {
+            Currentinteractive = randomChild.name;
+            normalText.SetActive(false);
+            interactiveText.SetActive(true);
+        }
+        prevActive = randomChild;
         randomChild.SetActive(true);
     }
     void casePenalty()
     {
         if (scoreManager.penalty)
         {
-            scoreManager .PlayerIcon.SetActive(false);
+            scoreManager.PlayerIcon.SetActive(false);
+            cardScreen.SetActive(false);
             currentScreen.SetActive(false);
             PenaltyScreen.SetActive(true);
-            scoreManager.turnCycle = 1;
+            scoreManager.turnCycle = 0;
             scoreManager.penalty = false;
         }
     }
