@@ -21,7 +21,8 @@ public class Animations : MonoBehaviour
     {
         GameObject PlayerScoreGetter = GameObject.Find("Game Manager");
         ScoreManager CatScore = PlayerScoreGetter.GetComponent<ScoreManager>();
-        
+        ScoreManager PigeonScore = PlayerScoreGetter.GetComponent<ScoreManager>();
+
         if (CatScore.P1Score >= 3 && CatScore.P1Score<6)
         {
             animator.Play("Cat_Idle_Tipsy");
@@ -29,6 +30,15 @@ public class Animations : MonoBehaviour
         if (CatScore.P1Score >= 6)
         {
             animator.Play("Cat_Idle_Drunk");
+        }
+
+        if (PigeonScore.P2Score >= 3 && PigeonScore.P2Score < 6)
+        {
+            animator.Play("Pigeon_Idle_Tipsy");
+        }
+        if (PigeonScore.P2Score >= 6)
+        {
+            animator.Play("Pigeon_Idle_Drunk");
         }
     }
 }
