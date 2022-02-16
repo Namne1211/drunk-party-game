@@ -4,50 +4,51 @@ using UnityEngine;
 
 public class GyroFunc : MonoBehaviour
 {
+    public GameObject balanceGame;
     Rigidbody2D rb;
     float AngleX;
     float rotationRate = 20f;
-    float timeLeft=5f;
     float RandomAngle;
     float ChgDirtime;
     bool chgDir=true;
-    public float ClampRate=15f;
+    public float ClampRate=20f;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
         rb= GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        ChgDirtime -= Time.deltaTime;
-        timeLeft -= Time.deltaTime;
-        
-        AngleX = -Input.acceleration.x * rotationRate;
-
-        RandomRotate();
-
-        //clamp the angle
-        if (transform.eulerAngles.z <= 180)
+        if (balanceGame != null)
         {
-            transform.eulerAngles = new Vector3(0, 0, Mathf.Clamp(transform.rotation.eulerAngles.z, 0, ClampRate));
-        }else
-        {
-            transform.eulerAngles = new Vector3(0, 0, Mathf.Clamp(transform.rotation.eulerAngles.z, 360f - ClampRate, 360f));
+            if(balanceGame.GetComponent<acceleratorTest>() != null)
+            {
+                if ((balanceGame.GetComponent<acceleratorTest>().winAble) &&
+                    (balanceGame.GetComponent<acceleratorTest>().timeLeft > 0 && balanceGame.GetComponent<acceleratorTest>().timeLeft < 5))
+                {
+                    RandomRotate();
+
+                }
+                else
+                {
+                    rb.angularVelocity = 0;
+                    transform.eulerAngles = new Vector3(0, 0, 0);
+                }
+            }
         }
-        
-        //rotate base on the phone accelerator
-        rb.angularVelocity += Mathf.Clamp(AngleX, -15f, 15f);
-
 
     }
 
     //random rotate some angle 
     void RandomRotate()
     {
+        ChgDirtime -= Time.deltaTime;
+
+        AngleX = -Input.acceleration.x * rotationRate;
         if (chgDir)
         {
             ChgDirtime = 2f;
@@ -58,17 +59,21 @@ public class GyroFunc : MonoBehaviour
         {
             chgDir = true;
         }
-        /*        if (transform.rotation.eulerAngles.z < 15 && transform.rotation.eulerAngles.z > -15)
-                {*/
-        //transform.Rotate(new Vector3(0, 0, RandomAngle));
-        //}
+
         rb.angularVelocity = RandomAngle;
 
-        
+        //clamp the angle
+        if (transform.eulerAngles.z <= 180)
+        {
+            transform.eulerAngles = new Vector3(0, 0, Mathf.Clamp(transform.rotation.eulerAngles.z, 0, ClampRate));
+        }
+        else
+        {
+            transform.eulerAngles = new Vector3(0, 0, Mathf.Clamp(transform.rotation.eulerAngles.z, 360f - ClampRate, 360f));
+        }
 
-
-
-
+        //rotate base on the phone accelerator
+        rb.angularVelocity += Mathf.Clamp(AngleX, -15f, 15f);
     }
     
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="task_back" size="0.100000 0.140107" />
+    <ImageTarget name="task" size="0.100000 0.140107" />
+    <ImageTarget name="Question2" size="0.100000 0.140107" />
+    <ImageTarget name="Question_back2" size="0.100000 0.140107" />
+    <ImageTarget name="punishment_back" size="0.100000 0.140107" />
+    <ImageTarget name="punishment" size="0.100000 0.140107" />
+  </Tracking>
+</QCARConfig>

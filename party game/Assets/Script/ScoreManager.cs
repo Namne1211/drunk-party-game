@@ -8,14 +8,24 @@ public class ScoreManager : MonoBehaviour
     public static string P2name;
     public static string P3name;
     public static string P4name;
+
+    public static int playernumber;
+
+    [Header("Player number")]
     public int CurrentPlayer;
+
+    [Header("Player score")]
     public int P1Score;
     public int P2Score;
     public int P3Score;
     public int P4Score;
+
+    [Header("")]
     public bool penalty;
+
+    [Header("Game turn")]
     public int turnCycle;
-    public int turn;
+
     public GameObject PlayerIcon;
     GameObject prevPlayerIcon;
     GameObject currentPlayer;
@@ -25,6 +35,7 @@ public class ScoreManager : MonoBehaviour
         PlayerIcon.transform.GetChild(0).gameObject.SetActive(true);
         prevPlayerIcon = PlayerIcon.transform.GetChild(0).gameObject;
 
+        //CurrentPlayer = playernumber;
 
         turnCycle = 0;
         P1Score = 0;
@@ -79,4 +90,5 @@ public class ScoreManager : MonoBehaviour
             //turnCycle = 1;
         }
     }
+
 }

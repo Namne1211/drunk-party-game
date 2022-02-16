@@ -77,7 +77,9 @@ public class MiniGameManager : EditorWindow
         }
         else
         {
-            GameObject newCard = Instantiate(SampleCard, new Vector3(0,0,0),new Quaternion(0,0,0,0),Holder);
+            GameObject newCard = Instantiate(SampleCard,Holder);
+            newCard.transform.position = Holder.transform.position;
+            newCard.transform.rotation = Holder.transform.rotation;
             Minigame card = newCard.GetComponent<Minigame>();
             card.ChangeContent(cardContent);
             Selection.activeGameObject = card.gameObject;

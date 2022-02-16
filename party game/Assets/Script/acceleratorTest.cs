@@ -5,16 +5,28 @@ using TMPro;
 
 public class acceleratorTest : MonoBehaviour
 {
-    public TextMeshProUGUI tmp;
-    public GameObject button;
+    //balance Game
+    Rigidbody2D rb;
+    public GameObject balanceObj;
+    public float loseRate = 12f;
+    //swing and shake game
+    public TextMeshPro tmp;
     public GameObject beer;
-    //public GameObject NormalButton;
-    //public GameObject textholder;
-    float timeLeft;
-    bool winAble;
+
+    public GameObject GameManager;
+    public int GameNum;
+
+    //timer and win condition
+    public float timeLeft;
+    bool done;
+    public bool winAble;
     bool win;
     public float CountDownTime = 3f;
     bool startCountDown=false;
+    [SerializeField]
+    bool endRound;
+    public GameObject StartButton;
+    public GameObject BackButton;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,27 +35,38 @@ public class acceleratorTest : MonoBehaviour
 
     private void OnEnable()
     {
+        if(balanceObj!=null)
+            rb = balanceObj.GetComponent<Rigidbody2D>();
+        done = true;
+        StartButton.SetActive(true);   
+        BackButton.SetActive(false);
         CountDownTime = 3f;
         startCountDown = false;
         timeLeft = 5f;
         winAble=true;
         win=false;
-        button.SetActive(true);
+        tmp.text = "";
         //NormalButton.SetActive(false);
     }
 
     private void OnDisable()
     {
         beer.SetActive(false);
-        //NormalButton.SetActive(true);
+
     }
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.GetComponent<MiniGameInstantiate>().ScoreSceen.active)
+        { 
+            endRound = true;
+        }
+        else
+        {
+            endRound = false;
+        }
 
-
-        
-        if (startCountDown && CountDownTime > 0)
+            if (startCountDown && CountDownTime > 0)
         {
             tmp.text = Mathf.Round(CountDownTime).ToString();
             CountDownTime -= Time.deltaTime;
@@ -51,19 +74,31 @@ public class acceleratorTest : MonoBehaviour
             
         if(CountDownTime < 0)
         {
+
             tmp.text = "";
             timeLeft -= Time.deltaTime;
             //textholder.SetActive(false);
+            switch (GameNum)
+            {
+                case 1:
+                    swingGame();
+                    break;
+                case 2:
+                    shakeGame();
+                    break;
+                case 3:
+                    BalanceGame();
+                    break;
+            }
         }
+
         
-        swingGame();
-        //shakeGame();
+
     }
 
     public void GameStart()
     {
-
-        button.SetActive(false);
+        StartButton.SetActive(false);
         startCountDown = true;
         win = false;
         winAble = true;
@@ -72,55 +107,115 @@ public class acceleratorTest : MonoBehaviour
 
     void swingGame()
     {
-        if (CountDownTime < 0)
+        if (timeLeft > 0)
         {
-            if (timeLeft > 0)
+            if (Input.acceleration.sqrMagnitude > 50f && winAble)
             {
-                if (Input.acceleration.sqrMagnitude > 80f && winAble)
-                {
-                    
-                    win = true;
-                    beer.SetActive(true);
-                }
+                win = true;
+                GameManager.GetComponent<MiniGameInstantiate>().Done();
+                beer.SetActive(true);
+                winAble = false;
             }
-            else if (win == false)
+        }
+        else if (timeLeft<0 &&winAble)
+        {
+            win = false;
+            GameManager.GetComponent<MiniGameInstantiate>().NotDone();
+            winAble = false;
+        }
+
+        if (winAble == false)
+        {
+            BackButton.SetActive(true);
+            if (win)
+            {
+                tmp.text = "win";
+            }
+            else
             {
                 tmp.text = "lose";
-                winAble = false;
-                //lose
-                //Debug.Log("lose");
             }
         }
-
-        if (win)
-        {
-            tmp.text = "win";
-        }
-
     }
 
     void shakeGame()
     {
-        if (CountDownTime < 0)
+        if (timeLeft > 0)
         {
-            if (timeLeft > 0)
+            if (Input.acceleration.sqrMagnitude < 1f &&winAble)
             {
-                if (Input.acceleration.sqrMagnitude < 1f)
-                {
-                    win = false;
-                    //lose
-                    tmp.text = "lose";
-                    winAble = false;
-                }
-
+                win = false;
+                GameManager.GetComponent<MiniGameInstantiate>().NotDone();
+                tmp.text = "lose";
+                winAble = false;
             }
-            else if (timeLeft < 0 && winAble == true)
+
+        }
+        else if (timeLeft < 0 && winAble == true)
+        {
+            win = true;
+            GameManager.GetComponent<MiniGameInstantiate>().Done();
+            winAble = false;
+            beer.SetActive(true);
+        }
+        if (winAble == false)
+        {
+            BackButton.SetActive(true);
+            if (win)
             {
-                win = true;
                 tmp.text = "win";
-                beer.SetActive(true);
+            }
+            else
+            {
+                tmp.text = "lose";
             }
         }
-        //Debug.Log(Input.acceleration.sqrMagnitude);
+    }
+    void BalanceGame()
+    {
+        
+        if (timeLeft > 0)
+        {
+            if ((balanceObj.transform.eulerAngles.z < 180 && balanceObj.transform.eulerAngles.z > loseRate) ||
+                (balanceObj.transform.eulerAngles.z < 360 - loseRate && balanceObj.transform.eulerAngles.z > 180)
+                && winAble)
+            {
+                timeLeft = 0;
+                win = false;               
+                winAble = false;
+                GameManager.GetComponent<MiniGameInstantiate>().NotDone();
+            }
+        }else if(timeLeft<0 && winAble==true)
+        {
+            win = true;
+            GameManager.GetComponent<MiniGameInstantiate>().Done();
+            winAble = false;
+        }
+
+        if (winAble == false)
+        {
+            BackButton.SetActive(true);
+            if (win)
+            {
+                tmp.text = "win";
+            }
+            else
+            {
+                tmp.text = "lose";
+            }
+        }
+
+
+    }
+
+    public void Back()
+    {
+        this.gameObject.SetActive(false);
+        if (endRound==false)
+        {
+            GameManager.GetComponent<MiniGameInstantiate>().cardScreen.SetActive(true);
+            GameManager.GetComponent<ScoreManager>().PlayerIcon.SetActive(true);
+        }       
+        
     }
 }
