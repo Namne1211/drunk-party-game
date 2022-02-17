@@ -9,19 +9,24 @@ public class MiniGameInstantiate : MonoBehaviour
     [Header("Game Camera")]
     public GameObject UICam;
     public GameObject ARCam;
+
     [Header("Game Sceen")]
     public GameObject PenaltyScreen;
     public GameObject currentScreen;
     public GameObject cardScreen;
     public GameObject ScoreSceen;
+    public GameObject EndSceen;
+
     [Header("Card Holder")]
     public GameObject Holder;
     public GameObject PenaltyHolder;
+
     [Header("Game Text")]
     public TextMeshProUGUI p1Score;
     public TextMeshProUGUI p2Score;
     public TextMeshProUGUI p3Score;
     public TextMeshProUGUI p4Score;
+
     [Header("")]
     public GameObject normalText;
     public GameObject interactiveText;
@@ -127,6 +132,7 @@ public class MiniGameInstantiate : MonoBehaviour
         //case of penalty screen 
         if (ingame && penaltystate)
         {
+            scoreManager.currentRound += 1;
             cardScreen.SetActive(true);
             PenaltyScreen.SetActive(false);
             currentScreen.SetActive(false);
@@ -163,7 +169,8 @@ public class MiniGameInstantiate : MonoBehaviour
             }
         }
         else if (penaltystate)
-        {            
+        {
+            scoreManager.currentRound += 1;
             cardScreen.SetActive(true);
             PenaltyScreen.SetActive(false);
             currentScreen.SetActive(false);
@@ -206,11 +213,20 @@ public class MiniGameInstantiate : MonoBehaviour
         prevActive = randomChild;
         randomChild.SetActive(true);
     }
-    public void ToPunish()
+    public void ToNextScene()
     {
-        PenaltyScreen.SetActive(true);
+        
         ScoreSceen.SetActive(false);
+        if(scoreManager.currentRound >= scoreManager.RoundNumber)
+        {
+            EndSceen.SetActive(true);
+        }
+        else
+        {
+            PenaltyScreen.SetActive(true);
+        }
     }
+
     void casePenalty()
     {
         if (scoreManager.penalty)

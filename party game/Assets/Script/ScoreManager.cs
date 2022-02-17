@@ -8,10 +8,12 @@ public class ScoreManager : MonoBehaviour
     public static string P2name;
     public static string P3name;
     public static string P4name;
-
+    public static int roundNum=2;
     public static int playernumber;
 
-    [Header("Player number")]
+    [Header("game number")]
+    public int RoundNumber;
+    public int currentRound;
     public int CurrentPlayer;
 
     [Header("Player score")]
@@ -35,7 +37,8 @@ public class ScoreManager : MonoBehaviour
         PlayerIcon.transform.GetChild(0).gameObject.SetActive(true);
         prevPlayerIcon = PlayerIcon.transform.GetChild(0).gameObject;
 
-        //CurrentPlayer = playernumber;
+        RoundNumber = roundNum;
+        CurrentPlayer = playernumber;
 
         turnCycle = 0;
         P1Score = 0;
@@ -91,4 +94,13 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    public void addPlayerNumber(int pNum)
+    {
+        playernumber = pNum;
+    }
+
+    public void addRoundNumber(int rNum)
+    {
+        roundNum = rNum;
+    }
 }
