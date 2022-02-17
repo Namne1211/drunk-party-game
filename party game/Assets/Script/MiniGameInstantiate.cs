@@ -28,6 +28,9 @@ public class MiniGameInstantiate : MonoBehaviour
     public string Currentinteractive;
 
     [Header("interactive")]
+    public GameObject SwingGameCard;
+    public GameObject ShakeGameCard;
+    public GameObject BalanceGameCard;
     public GameObject SwingGame;
     public GameObject ShakeGame;
     public GameObject BalanceGame;
@@ -82,7 +85,35 @@ public class MiniGameInstantiate : MonoBehaviour
             randomChild.SetActive(true);
             penaltystate = true;
         }
-        
+        if (ingame)
+        {
+            switch (Currentinteractive)
+            {
+                case "Swing Game":
+                    SwingGameCard.SetActive(true);
+                    ShakeGameCard.SetActive(false);
+                    BalanceGameCard.SetActive(false);
+                    break;
+
+                case "Shake Game":
+                    SwingGameCard.SetActive(false);
+                    ShakeGameCard.SetActive(true);
+                    BalanceGameCard.SetActive(false);
+                    break;
+
+                case "Balance Game":
+                    SwingGameCard.SetActive(false);
+                    ShakeGameCard.SetActive(false);
+                    BalanceGameCard.SetActive(true);
+                    break;
+            }
+        }
+        else
+        {
+            SwingGameCard.SetActive(false);
+            ShakeGameCard.SetActive(false);
+            BalanceGameCard.SetActive(false);
+        }
         UICam.SetActive(false);
         ARCam.SetActive(true);
     }
