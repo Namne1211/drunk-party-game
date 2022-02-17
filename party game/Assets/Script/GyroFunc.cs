@@ -7,11 +7,11 @@ public class GyroFunc : MonoBehaviour
     public GameObject balanceGame;
     Rigidbody2D rb;
     float AngleX;
-    float rotationRate = 20f;
+    float rotationRate = 30f;
     float RandomAngle;
     float ChgDirtime;
     bool chgDir=true;
-    public float ClampRate=20f;
+    public float ClampRate=30f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +28,7 @@ public class GyroFunc : MonoBehaviour
             if(balanceGame.GetComponent<acceleratorTest>() != null)
             {
                 if ((balanceGame.GetComponent<acceleratorTest>().winAble) &&
-                    (balanceGame.GetComponent<acceleratorTest>().timeLeft > 0 && balanceGame.GetComponent<acceleratorTest>().timeLeft < 5))
+                    (balanceGame.GetComponent<acceleratorTest>().timeLeft > 0 && balanceGame.GetComponent<acceleratorTest>().CountDownTime < 0))
                 {
                     RandomRotate();
 
@@ -52,7 +52,7 @@ public class GyroFunc : MonoBehaviour
         if (chgDir)
         {
             ChgDirtime = 2f;
-            RandomAngle = Random.Range(-0.4f, 0.4f)*rotationRate;
+            RandomAngle = Random.Range(-0.7f, 0.7f)*rotationRate;
             chgDir = false;
         }
         if (ChgDirtime < 0)

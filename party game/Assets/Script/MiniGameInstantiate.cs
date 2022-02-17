@@ -220,8 +220,9 @@ public class MiniGameInstantiate : MonoBehaviour
     {
         
         ScoreSceen.SetActive(false);
-        if(scoreManager.currentRound >= scoreManager.RoundNumber)
+        if(scoreManager.currentRound >= scoreManager.RoundNumber-1)
         {
+            scoreManager.PlayerIcon.SetActive(false);
             EndSceen.SetActive(true);
         }
         else

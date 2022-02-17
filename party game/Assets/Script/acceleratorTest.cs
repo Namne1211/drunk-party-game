@@ -8,11 +8,12 @@ public class acceleratorTest : MonoBehaviour
     //balance Game
     Rigidbody2D rb;
     public GameObject balanceObj;
-    public float loseRate = 12f;
+    public float loseRate = 22f;
+
     //swing and shake game
     public TextMeshPro tmp;
     public GameObject beer;
-
+    public float WinCounter;
     public GameObject GameManager;
     public int GameNum;
 
@@ -35,6 +36,7 @@ public class acceleratorTest : MonoBehaviour
 
     private void OnEnable()
     {
+        WinCounter =0;
         if(balanceObj!=null)
             rb = balanceObj.GetComponent<Rigidbody2D>();
         done = true;
@@ -42,7 +44,7 @@ public class acceleratorTest : MonoBehaviour
         BackButton.SetActive(false);
         CountDownTime = 3f;
         startCountDown = false;
-        timeLeft = 5f;
+        timeLeft = 10f;
         winAble=true;
         win=false;
         tmp.text = "";
@@ -102,14 +104,13 @@ public class acceleratorTest : MonoBehaviour
         startCountDown = true;
         win = false;
         winAble = true;
-        timeLeft =5f;
     }
 
     void swingGame()
     {
         if (timeLeft > 0)
         {
-            if (Input.acceleration.sqrMagnitude > 50f && winAble)
+            if (Input.acceleration.sqrMagnitude > 60f && winAble)
             {
                 win = true;
                 GameManager.GetComponent<MiniGameInstantiate>().Done();
@@ -142,21 +143,31 @@ public class acceleratorTest : MonoBehaviour
     {
         if (timeLeft > 0)
         {
-            if (Input.acceleration.sqrMagnitude < 1f &&winAble)
+            if (Input.acceleration.sqrMagnitude < 2f )
             {
-                win = false;
-                GameManager.GetComponent<MiniGameInstantiate>().NotDone();
-                tmp.text = "lose";
-                winAble = false;
+                WinCounter = WinCounter;                
             }
+            else
+            {
+                WinCounter += Time.deltaTime;
+            }
+            if(WinCounter > 5f && winAble)
+            {
+                win = true;
+                GameManager.GetComponent<MiniGameInstantiate>().Done();
+                winAble = false;
+                beer.SetActive(true);
+            }
+            
 
         }
-        else if (timeLeft < 0 && winAble == true)
+        else if (timeLeft < 0 && winAble)
         {
-            win = true;
-            GameManager.GetComponent<MiniGameInstantiate>().Done();
+            win = false;
+            GameManager.GetComponent<MiniGameInstantiate>().NotDone();
+            tmp.text = "lose";
             winAble = false;
-            beer.SetActive(true);
+            
         }
         if (winAble == false)
         {
