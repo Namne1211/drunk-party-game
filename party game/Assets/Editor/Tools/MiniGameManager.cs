@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+#if UNITY_EDITOR
 public class MiniGameManager : EditorWindow
 {
     public GameObject SampleCard;
@@ -105,5 +106,6 @@ public class MiniGameManager : EditorWindow
         cardContent = "";
 
     }
+#endif
 }
 

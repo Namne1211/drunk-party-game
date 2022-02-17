@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 
 public class MiniGameInstantiate : MonoBehaviour
 {
@@ -80,6 +82,7 @@ public class MiniGameInstantiate : MonoBehaviour
 
     public void ARON()
     {
+        scoreManager.PlayerIcon.SetActive(false);
         if (PenaltyScreen.active == true)
         {
             if (prevActive != null)
@@ -262,6 +265,10 @@ public class MiniGameInstantiate : MonoBehaviour
                 break;
         }
 
+    }
 
+    public void Back()
+    {
+        SceneManager.LoadScene(0);
     }
 }

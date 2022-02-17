@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
     public static string P2name;
     public static string P3name;
     public static string P4name;
-    public static int roundNum=2;
+    public static int roundNum;
     public static int playernumber;
 
     [Header("game number")]
@@ -33,12 +33,21 @@ public class ScoreManager : MonoBehaviour
     GameObject currentPlayer;
     // Start is called before the first frame update
     void Start()
-    {
+    {   
         PlayerIcon.transform.GetChild(0).gameObject.SetActive(true);
         prevPlayerIcon = PlayerIcon.transform.GetChild(0).gameObject;
 
+        
         RoundNumber = roundNum;
-        CurrentPlayer = playernumber;
+        if (playernumber != 0)
+        {
+            CurrentPlayer = playernumber;
+        }
+        else
+        {
+            CurrentPlayer = 2;
+        }
+        
 
         turnCycle = 0;
         P1Score = 0;
