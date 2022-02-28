@@ -18,6 +18,7 @@ public class MiniGameInstantiate : MonoBehaviour
     public GameObject cardScreen;
     public GameObject ScoreSceen;
     public GameObject EndSceen;
+    public GameObject PenaltyScoreScreen;
 
     [Header("Card Holder")]
     public GameObject Holder;
@@ -74,9 +75,9 @@ public class MiniGameInstantiate : MonoBehaviour
     }
     public void NotDone()
     {
-        scoreManager.turnCycle += 1;
-        scoreManager.UpdateIcon();
+        scoreManager.turnCycle += 1;      
         scoreManager.PointUpdate();
+        scoreManager.UpdateIcon();
         runCycle();
     }
 
@@ -130,13 +131,13 @@ public class MiniGameInstantiate : MonoBehaviour
         
         UICam.SetActive(true);
         ARCam.SetActive(false);
-        scoreManager.PlayerIcon.SetActive(true);
+        
 
         //case of penalty screen 
         if (ingame && penaltystate)
         {
             scoreManager.currentRound += 1;
-            cardScreen.SetActive(true);
+            PenaltyScoreScreen.SetActive(true);
             PenaltyScreen.SetActive(false);
             currentScreen.SetActive(false);
             penaltystate = false;
@@ -144,6 +145,7 @@ public class MiniGameInstantiate : MonoBehaviour
         }
         else if(ingame)
         {
+            scoreManager.PlayerIcon.SetActive(true);
             switch (Currentinteractive)
             {
                 case "Swing Game":
@@ -173,8 +175,9 @@ public class MiniGameInstantiate : MonoBehaviour
         }
         else if (penaltystate)
         {
+            
+            PenaltyScoreScreen.SetActive(true);
             scoreManager.currentRound += 1;
-            cardScreen.SetActive(true);
             PenaltyScreen.SetActive(false);
             currentScreen.SetActive(false);
             runCycle();
@@ -182,6 +185,7 @@ public class MiniGameInstantiate : MonoBehaviour
         }
         else
         {
+            scoreManager.PlayerIcon.SetActive(true);
             cardScreen.SetActive(false);
             PenaltyScreen.SetActive(false);
             currentScreen.SetActive(true);
@@ -216,6 +220,13 @@ public class MiniGameInstantiate : MonoBehaviour
         prevActive = randomChild;
         randomChild.SetActive(true);
     }
+
+    public void startCycle()
+    {
+        PenaltyScoreScreen.SetActive(false);
+        scoreManager.PlayerIcon.SetActive(true);
+        cardScreen.SetActive(true);
+    }
     public void ToNextScene()
     {
         
@@ -235,6 +246,7 @@ public class MiniGameInstantiate : MonoBehaviour
     {
         if (scoreManager.penalty)
         {
+            //scoreManager.UpdateScorePosition();
             scoreManager.PlayerIcon.SetActive(false);
             cardScreen.SetActive(false);
             currentScreen.SetActive(false);
