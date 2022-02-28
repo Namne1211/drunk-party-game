@@ -239,20 +239,74 @@ public class ScoreManager : MonoBehaviour
         switch (CurrentPlayer)
         {
             case 2:
-                for(int a = 0;a > 1;a++)
+                for(int a = 0;a < 2;a++)
                 {
                     if(playerPoints[a] == playerPointsSort[0])
                     {
-                        place1 = a;
+                        place1 = a+1;
                     }
-                    if(a != place1)
+                    if(a+1 != place1)
                     {
                         if (playerPoints[a] == playerPointsSort[1])
                         {
-                            place2 = a;
+                            place2 = a+1;
                         }
                     }
 
+                }
+                break;
+            case 3:
+                for (int a = 0; a < 3; a++)
+                {
+                    if (playerPoints[a] == playerPointsSort[0])
+                    {
+                        place1 = a + 1;
+                    }
+                    if (a + 1 != place1 && a + 1 != place3)
+                    {
+                        if (playerPoints[a] == playerPointsSort[1])
+                        {
+                            place2 = a + 1;
+                        }
+                    }
+                    if (a + 1 != place2 && a + 1 != place1)
+                    {
+                        if (playerPoints[a] == playerPointsSort[2])
+                        {
+                            place3 = a + 1;
+                        }
+                    }
+
+                }
+                break;
+            case 4:
+                for (int a = 0; a < 4; a++)
+                {
+                    if (playerPoints[a] == playerPointsSort[0])
+                    {
+                        place1 = a + 1;
+                    }
+                    if (a + 1 != place1 && a + 1 != place4 && a + 1 != place3)
+                    {
+                        if (playerPoints[a] == playerPointsSort[1])
+                        {
+                            place2 = a + 1;
+                        }
+                    }
+                    if (a + 1 != place2 && a + 1 != place1 && a + 1 != place4)
+                    {
+                        if (playerPoints[a] == playerPointsSort[2])
+                        {
+                            place3 = a + 1;
+                        }
+                    }
+                    if (a + 1 != place3 && a + 1 != place2 && a + 1 != place1)
+                    {
+                        if (playerPoints[a] == playerPointsSort[3])
+                        {
+                            place4 = a + 1;
+                        }
+                    }
                 }
                 break;
         }
