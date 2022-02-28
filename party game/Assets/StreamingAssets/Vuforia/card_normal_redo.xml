@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
-    <ImageTarget name="Normal" size="0.100000 0.139823" />
+    <ImageTarget name="normal_back" size="0.100000 0.139823" />
+    <ImageTarget name="normal" size="0.100000 0.139823" />
+    <ImageTarget name="punishment" size="0.100000 0.140107" />
+    <ImageTarget name="punishment_back" size="0.100000 0.140107" />
+    <ImageTarget name="interactive" size="0.100000 0.139823" />
+    <ImageTarget name="interactive_back" size="0.100000 0.139823" />
   </Tracking>
 </QCARConfig>

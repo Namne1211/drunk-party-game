@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
+using TMPro;
 using UnityEngine;
-
 public class ScoreManager : MonoBehaviour
 {
     public static string P1name;
@@ -11,8 +11,16 @@ public class ScoreManager : MonoBehaviour
     public static string P4name;
     public static int roundNum;
     public static int playernumber;
-    
 
+    public TextMeshProUGUI player1Name;
+    public TextMeshProUGUI player2Name;
+    public TextMeshProUGUI player3Name;
+    public TextMeshProUGUI player4Name;
+
+    public string ingameName1;
+    public string ingameName2;
+    public string ingameName3;
+    public string ingameName4;
 
     [Header("game number")]
     public int RoundNumber;
@@ -53,9 +61,13 @@ public class ScoreManager : MonoBehaviour
             PlayerIcon.transform.GetChild(0).gameObject.SetActive(true);
             prevPlayerIcon = PlayerIcon.transform.GetChild(0).gameObject;
         }
-        
 
         
+        ingameName1 = P1name;
+        ingameName2 = P2name;
+        ingameName3 = P3name;
+        ingameName4 = P4name;
+
         RoundNumber = roundNum;
         if (playernumber != 0)
         {
@@ -77,9 +89,17 @@ public class ScoreManager : MonoBehaviour
         PointsList();
     }
 
-    void UpdateName()
+    public void UpdateName()
     {
+        if (player1Name != null && player2Name != null && player3Name != null && player4Name != null)
+        {
+            P1name = player1Name.text;
+            P2name = player2Name.text;
+            P3name = player3Name.text;
+            P4name = player4Name.text;
+        }
         
+
     }
 
     void PointsList()
