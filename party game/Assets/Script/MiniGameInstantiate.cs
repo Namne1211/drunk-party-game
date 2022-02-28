@@ -246,7 +246,6 @@ public class MiniGameInstantiate : MonoBehaviour
     {
         if (scoreManager.penalty)
         {
-            //scoreManager.UpdateScorePosition();
             scoreManager.PlayerIcon.SetActive(false);
             cardScreen.SetActive(false);
             currentScreen.SetActive(false);

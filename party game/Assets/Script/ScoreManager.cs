@@ -98,8 +98,6 @@ public class ScoreManager : MonoBehaviour
             P3name = player3Name.text;
             P4name = player4Name.text;
         }
-        
-
     }
 
     void PointsList()
@@ -132,6 +130,7 @@ public class ScoreManager : MonoBehaviour
                 break;
         }
     }
+
     void UpdateList()
     {
         switch (CurrentPlayer)
@@ -163,6 +162,7 @@ public class ScoreManager : MonoBehaviour
         }
         playerPointsSort.Sort(new CustomComparer());
     }
+
     void penaltyupdatescreen()
     {
         GameObject Player3pen = penaltyScoreScreen.transform.GetChild(penaltyScoreScreen.transform.childCount - 2).gameObject;
@@ -208,6 +208,7 @@ public class ScoreManager : MonoBehaviour
     public void UpdateIcon()
     {
         UpdateList();
+        updateScorePosition();
         resetCycle();
         if (prevPlayerIcon != null)
             prevPlayerIcon.SetActive(false);
@@ -233,7 +234,29 @@ public class ScoreManager : MonoBehaviour
             //turnCycle = 1;
         }
     }
+    void updateScorePosition()
+    {
+        switch (CurrentPlayer)
+        {
+            case 2:
+                for(int a = 0;a > 1;a++)
+                {
+                    if(playerPoints[a] == playerPointsSort[0])
+                    {
+                        place1 = a;
+                    }
+                    if(a != place1)
+                    {
+                        if (playerPoints[a] == playerPointsSort[1])
+                        {
+                            place2 = a;
+                        }
+                    }
 
+                }
+                break;
+        }
+    }
     public void PlusPenaltyScore(int player)
     {
         switch (player)
