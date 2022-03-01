@@ -48,6 +48,11 @@ public class ScoreManager : MonoBehaviour
     public int place3;
     public int place4;
 
+    bool placed1;
+    bool placed2;
+    bool placed3;
+    bool placed4;
+
     [Header("scoreboard placement")]
     public Transform First;
     public Transform Second;
@@ -234,6 +239,11 @@ public class ScoreManager : MonoBehaviour
     //update player icon and penalty icon
     public void UpdateIcon()
     {
+
+        placed1 = true;
+        placed2 = true;
+        placed3 = true;
+        placed4 = true;
         UpdateList();
         updateScorePosition();
         ScoreInGame();
@@ -271,19 +281,16 @@ public class ScoreManager : MonoBehaviour
             case 2:
                 for(int a = 0;a < 2;a++)
                 {
-                    if (a != place2)
+                    if (playerPoints[a] == playerPointsSort[0] && placed1)
                     {
-                        if (playerPoints[a] == playerPointsSort[0])
-                        {
-                            place1 = a;
-                        }
+                        place1 = a;
+                        placed1 = false;
                     }
-                    if(a!= place1)
+                    else
+                    if (playerPoints[a] == playerPointsSort[1] && placed2)
                     {
-                        if (playerPoints[a] == playerPointsSort[1])
-                        {
-                            place2 = a;
-                        }
+                        place2 = a;
+                        placed2 = false;
                     }
 
                 }
@@ -291,61 +298,52 @@ public class ScoreManager : MonoBehaviour
             case 3:
                 for (int a = 0; a < 3; a++)
                 {
-                    if (a != place2 && a != place3)
+                    if (playerPoints[a] == playerPointsSort[0] && placed1)
                     {
-                        if (playerPoints[a] == playerPointsSort[0])
-                        {
-                            place1 = a;
-                        }
+                        place1 = a;
+                        placed1 = false;
                     }
-                    if (a != place1 && a!= place3)
+                    else
+                    if (playerPoints[a] == playerPointsSort[1] && placed2)
                     {
-                        if (playerPoints[a] == playerPointsSort[1])
-                        {
-                            place2 = a;
-                        }
+                        place2 = a;
+                        placed2 = false;
                     }
-                    if (a!= place2 && a != place1)
+                    else
+                    if (playerPoints[a] == playerPointsSort[2] && placed3)
                     {
-                        if (playerPoints[a] == playerPointsSort[2])
-                        {
-                            place3 = a;
-                        }
+                        place3 = a;
+                        placed3 = false;
                     }
-
                 }
                 break;
             case 4:
                 for (int a = 0; a < 4; a++)
                 {
-                    if (a != place2 && a != place3 && a != place4)
+                    if (playerPoints[a] == playerPointsSort[0] && placed1)
                     {
-                        if (playerPoints[a] == playerPointsSort[0])
-                        {
-                            place1 = a;
-                        }
+                        place1 = a;
+                        placed1 = false;
                     }
-                    if (a!= place1 && a != place4 && a != place3)
+                    else
+                    if (playerPoints[a] == playerPointsSort[1] && placed2)
                     {
-                        if (playerPoints[a] == playerPointsSort[1])
-                        {
-                            place2 = a;
-                        }
+                        place2 = a;
+                        placed2 = false;
                     }
-                    if (a != place2 && a != place1 && a != place4)
+                    else
+                    if (playerPoints[a] == playerPointsSort[2] && placed3)
                     {
-                        if (playerPoints[a] == playerPointsSort[2])
-                        {
-                            place3 = a;
-                        }
+                        place3 = a;
+                        placed3 = false;
                     }
-                    if (a != place3 && a != place2 && a != place1)
+                    else
+                    if (playerPoints[a] == playerPointsSort[3] && placed4)
                     {
-                        if (playerPoints[a] == playerPointsSort[3])
-                        {
-                            place4 = a;
-                        }
+                        place4 = a;
+                        placed4 = false;
                     }
+                    
                 }
                 break;
         }
