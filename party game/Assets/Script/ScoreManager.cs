@@ -48,21 +48,39 @@ public class ScoreManager : MonoBehaviour
     public int place3;
     public int place4;
 
-    public List<int> playerPoints;
-    public List<int> playerPointsSort;
+    [Header("scoreboard placement")]
+    public Transform First;
+    public Transform Second;
+    public Transform Third;
+    public Transform Fourth;
+    public List<GameObject> playerScores = new List<GameObject>();
+
+    //list for poits
+    List<int> playerPoints;
+    List<int> playerPointsSort;
+
+    [Header("Name group")]
+    //list for names
+    public List<TextMeshProUGUI> p1Name = new List<TextMeshProUGUI> ();
+    public List<TextMeshProUGUI> p2Name = new List<TextMeshProUGUI>();
+    public List<TextMeshProUGUI> p3Name = new List<TextMeshProUGUI>();
+    public List<TextMeshProUGUI> p4Name = new List<TextMeshProUGUI>();
+
     GameObject prevPlayerIcon;
     GameObject currentPlayer;
     // Start is called before the first frame update
     void Start()
-    {   
+    {
+        playerPoints = new List<int> ();
         playerPointsSort = new List<int>();
         if (PlayerIcon != null)
         {
             PlayerIcon.transform.GetChild(0).gameObject.SetActive(true);
             prevPlayerIcon = PlayerIcon.transform.GetChild(0).gameObject;
         }
-
         
+
+
         ingameName1 = P1name;
         ingameName2 = P2name;
         ingameName3 = P3name;
@@ -86,7 +104,12 @@ public class ScoreManager : MonoBehaviour
         P2Score = 0;
         P3Score = 0;
         P4Score = 0;
-        PointsList();
+        if(playerScores.Count != 0)
+        {
+            PointsList();
+            NameInGame();
+        }
+        
     }
 
     public void UpdateName()
@@ -100,6 +123,7 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    //update list for scoreboard position
     void PointsList()
     {
         switch (CurrentPlayer)
@@ -109,6 +133,8 @@ public class ScoreManager : MonoBehaviour
                 playerPoints.Add(P2Score);
                 playerPointsSort.Add(P1Score);
                 playerPointsSort.Add(P2Score);
+                playerScores[2].SetActive(false);
+                playerScores[3].SetActive(false);
                 break;
             case 3:
                 playerPoints.Add(P1Score);
@@ -117,6 +143,7 @@ public class ScoreManager : MonoBehaviour
                 playerPointsSort.Add(P1Score);
                 playerPointsSort.Add(P2Score);
                 playerPointsSort.Add(P3Score);
+                playerScores[3].SetActive(false);
                 break;
             case 4:
                 playerPoints.Add(P1Score);
@@ -209,6 +236,8 @@ public class ScoreManager : MonoBehaviour
     {
         UpdateList();
         updateScorePosition();
+        ScoreInGame();
+
         resetCycle();
         if (prevPlayerIcon != null)
             prevPlayerIcon.SetActive(false);
@@ -224,6 +253,7 @@ public class ScoreManager : MonoBehaviour
 
         prevPlayerIcon = currentPlayer;
         currentPlayer.SetActive(true);
+        
     }
     //reset the player cycle
     void resetCycle()
@@ -241,15 +271,18 @@ public class ScoreManager : MonoBehaviour
             case 2:
                 for(int a = 0;a < 2;a++)
                 {
-                    if(playerPoints[a] == playerPointsSort[0])
+                    if (a != place2)
                     {
-                        place1 = a+1;
+                        if (playerPoints[a] == playerPointsSort[0])
+                        {
+                            place1 = a;
+                        }
                     }
-                    if(a+1 != place1)
+                    if(a!= place1)
                     {
                         if (playerPoints[a] == playerPointsSort[1])
                         {
-                            place2 = a+1;
+                            place2 = a;
                         }
                     }
 
@@ -258,22 +291,25 @@ public class ScoreManager : MonoBehaviour
             case 3:
                 for (int a = 0; a < 3; a++)
                 {
-                    if (playerPoints[a] == playerPointsSort[0])
+                    if (a != place2 && a != place3)
                     {
-                        place1 = a + 1;
+                        if (playerPoints[a] == playerPointsSort[0])
+                        {
+                            place1 = a;
+                        }
                     }
-                    if (a + 1 != place1 && a + 1 != place3)
+                    if (a != place1 && a!= place3)
                     {
                         if (playerPoints[a] == playerPointsSort[1])
                         {
-                            place2 = a + 1;
+                            place2 = a;
                         }
                     }
-                    if (a + 1 != place2 && a + 1 != place1)
+                    if (a!= place2 && a != place1)
                     {
                         if (playerPoints[a] == playerPointsSort[2])
                         {
-                            place3 = a + 1;
+                            place3 = a;
                         }
                     }
 
@@ -282,35 +318,40 @@ public class ScoreManager : MonoBehaviour
             case 4:
                 for (int a = 0; a < 4; a++)
                 {
-                    if (playerPoints[a] == playerPointsSort[0])
+                    if (a != place2 && a != place3 && a != place4)
                     {
-                        place1 = a + 1;
+                        if (playerPoints[a] == playerPointsSort[0])
+                        {
+                            place1 = a;
+                        }
                     }
-                    if (a + 1 != place1 && a + 1 != place4 && a + 1 != place3)
+                    if (a!= place1 && a != place4 && a != place3)
                     {
                         if (playerPoints[a] == playerPointsSort[1])
                         {
-                            place2 = a + 1;
+                            place2 = a;
                         }
                     }
-                    if (a + 1 != place2 && a + 1 != place1 && a + 1 != place4)
+                    if (a != place2 && a != place1 && a != place4)
                     {
                         if (playerPoints[a] == playerPointsSort[2])
                         {
-                            place3 = a + 1;
+                            place3 = a;
                         }
                     }
-                    if (a + 1 != place3 && a + 1 != place2 && a + 1 != place1)
+                    if (a != place3 && a != place2 && a != place1)
                     {
                         if (playerPoints[a] == playerPointsSort[3])
                         {
-                            place4 = a + 1;
+                            place4 = a;
                         }
                     }
                 }
                 break;
         }
     }
+
+    //penalty update button
     public void PlusPenaltyScore(int player)
     {
         switch (player)
@@ -349,6 +390,8 @@ public class ScoreManager : MonoBehaviour
 
         }
     }
+
+    //round and player number with menu button
     public void addPlayerNumber(int pNum)
     {
         playernumber = pNum;
@@ -357,6 +400,89 @@ public class ScoreManager : MonoBehaviour
     public void addRoundNumber(int rNum)
     {
         roundNum = rNum;
+    }
+
+    //update name in game
+    void NameInGame()
+    {
+        foreach(TextMeshProUGUI i in p1Name)
+        {
+            i.text = ingameName1;
+        }
+        foreach (TextMeshProUGUI i in p2Name)
+        {
+            i.text = ingameName2;
+        }
+        foreach (TextMeshProUGUI i in p3Name)
+        {
+            i.text = ingameName3;
+        }
+        foreach (TextMeshProUGUI i in p4Name)
+        {
+            i.text = ingameName4;
+        }
+    }
+
+    //update position of score in game
+
+    void ScoreInGame()
+    {
+        switch (CurrentPlayer)
+        {
+            case 2:
+                for (int i = 0; i < 2; i++)
+                {
+                    if (place1 == i)
+                    {
+                        playerScores[i].transform.position = First.position;
+                    }
+                    else if (place2 == i)
+                    {
+                        playerScores[i].transform.position = Second.position;
+                    }
+                }
+                break;
+            case 3:
+                for (int i = 0; i < 3; i++)
+                {
+                    if (place1 == i)
+                    {
+                        playerScores[i].transform.position = First.position;
+                    }
+                    else if (place2 == i)
+                    {
+                        playerScores[i].transform.position = Second.position;
+                    }
+                    else if (place3 == i)
+                    {
+                        playerScores[i].transform.position = Third.position;
+                    }
+                }
+                break;
+            case 4:
+                for (int i = 0; i < 4; i++)
+                {
+                    if (place1 == i)
+                    {
+                        playerScores[i].transform.position = First.position;
+                    }
+                    else if (place2 == i)
+                    {
+                        playerScores[i].transform.position = Second.position;
+                    }
+                    else if (place3 == i)
+                    {
+                        playerScores[i].transform.position = Third.position;
+                    }
+                    else if (place4 == i)
+                    {
+                        playerScores[i].transform.position = Fourth.position;
+                    }
+                }
+                break;
+
+        }
+        
     }
 }
 
