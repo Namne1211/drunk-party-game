@@ -12,7 +12,6 @@ public class acceleratorTest : MonoBehaviour
 
     //swing and shake game
     public TextMeshPro tmp;
-    public GameObject beer;
     public float WinCounter;
     public GameObject GameManager;
     public int GameNum;
@@ -21,11 +20,13 @@ public class acceleratorTest : MonoBehaviour
     public float timeLeft;
     bool done;
     public bool winAble;
-    bool win;
+    public bool win;
     public float CountDownTime = 3f;
     bool startCountDown=false;
     [SerializeField]
     bool endRound;
+    public GameObject manual;
+    public GameObject character;
     public GameObject StartButton;
     public GameObject BackButton;
     // Start is called before the first frame update
@@ -36,6 +37,7 @@ public class acceleratorTest : MonoBehaviour
 
     private void OnEnable()
     {
+        manual.SetActive(true);
         WinCounter =0;
         if(balanceObj!=null)
             rb = balanceObj.GetComponent<Rigidbody2D>();
@@ -53,7 +55,6 @@ public class acceleratorTest : MonoBehaviour
 
     private void OnDisable()
     {
-        beer.SetActive(false);
 
     }
     // Update is called once per frame
@@ -100,6 +101,7 @@ public class acceleratorTest : MonoBehaviour
 
     public void GameStart()
     {
+        manual.SetActive(false);
         StartButton.SetActive(false);
         startCountDown = true;
         win = false;
@@ -112,9 +114,10 @@ public class acceleratorTest : MonoBehaviour
         {
             if (Input.acceleration.sqrMagnitude > 60f && winAble)
             {
+                if(character!=null)
+                    character.GetComponent<Animator>().SetTrigger("Win");
                 win = true;
                 GameManager.GetComponent<MiniGameInstantiate>().Done();
-                beer.SetActive(true);
                 winAble = false;
             }
         }
@@ -145,18 +148,29 @@ public class acceleratorTest : MonoBehaviour
         {
             if (Input.acceleration.sqrMagnitude < 2f )
             {
+                if (character != null)
+                {
+                    character.GetComponent<Animator>().SetBool("shake",false);
+                }                 
                 WinCounter = WinCounter;                
             }
             else
             {
+                if (character != null)
+                {
+                    character.GetComponent<Animator>().SetBool("shake", true);
+                }
                 WinCounter += Time.deltaTime;
             }
             if(WinCounter > 5f && winAble)
             {
+                if (character != null)
+                {
+                    character.GetComponent<Animator>().SetTrigger("pop");
+                }
                 win = true;
                 GameManager.GetComponent<MiniGameInstantiate>().Done();
                 winAble = false;
-                beer.SetActive(true);
             }
             
 

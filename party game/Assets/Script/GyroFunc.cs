@@ -5,6 +5,9 @@ using UnityEngine;
 public class GyroFunc : MonoBehaviour
 {
     public GameObject balanceGame;
+    public GameObject Firstpos;
+    public GameObject SecondPos;
+    public GameObject ThirdPos;
     Rigidbody2D rb;
     float AngleX;
     float rotationRate = 30f;
@@ -36,9 +39,15 @@ public class GyroFunc : MonoBehaviour
                 else
                 {
                     rb.angularVelocity = 0;
-                    transform.eulerAngles = new Vector3(0, 0, 0);
+                    transform.eulerAngles = new Vector3(0, 0, 0);                   
                 }
             }
+        }
+        if (balanceGame.GetComponent<acceleratorTest>().win)
+        {
+            ThirdPos.SetActive(true);
+            Firstpos.SetActive(false);
+            SecondPos.SetActive(false);
         }
 
     }
@@ -62,8 +71,20 @@ public class GyroFunc : MonoBehaviour
 
         rb.angularVelocity = RandomAngle;
 
-        //clamp the angle
-        if (transform.eulerAngles.z <= 180)
+        if ((transform.eulerAngles.z >= 14 && transform.eulerAngles.z <= ClampRate) || (transform.eulerAngles.z <= 360-14 && transform.eulerAngles.z >= 360-ClampRate))
+        { 
+            SecondPos.SetActive(true);
+            Firstpos.SetActive(false);
+        }
+        else
+        {
+            SecondPos.SetActive(false);
+            Firstpos.SetActive(true);
+        }
+
+
+            //clamp the angle
+            if (transform.eulerAngles.z <= 180)
         {
             transform.eulerAngles = new Vector3(0, 0, Mathf.Clamp(transform.rotation.eulerAngles.z, 0, ClampRate));
         }
@@ -74,6 +95,7 @@ public class GyroFunc : MonoBehaviour
 
         //rotate base on the phone accelerator
         rb.angularVelocity += Mathf.Clamp(AngleX, -15f, 15f);
+        
     }
     
 }
