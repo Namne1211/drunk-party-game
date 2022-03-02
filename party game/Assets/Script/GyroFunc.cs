@@ -71,7 +71,7 @@ public class GyroFunc : MonoBehaviour
 
         rb.angularVelocity = RandomAngle;
 
-        if ((transform.eulerAngles.z >= 14 && transform.eulerAngles.z <= ClampRate) || (transform.eulerAngles.z <= 360-14 && transform.eulerAngles.z >= 360-ClampRate))
+        if ((transform.eulerAngles.z >= 10 && transform.eulerAngles.z <= ClampRate) || (transform.eulerAngles.z <= 360-10 && transform.eulerAngles.z >= 360-ClampRate))
         { 
             SecondPos.SetActive(true);
             Firstpos.SetActive(false);

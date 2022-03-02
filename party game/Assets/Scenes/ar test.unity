@@ -233,7 +233,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.3641504}
   m_AnchorMax: {x: 1, y: 0.45743832}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0.00012207031, y: 0}
   m_SizeDelta: {x: -0.000028073788, y: 0.000015258996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &15152176
@@ -587,6 +587,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textContainer: {fileID: 521854958}
   text: 'Give out 2 drinks to one player. '
+  questionIndex: 0
 --- !u!212 &62776419
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1128,12 +1129,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 79950161}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 597310213}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &88554781
 GameObject:
@@ -1354,35 +1355,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106931184}
   m_CullTransparentMesh: 1
---- !u!21 &107994558
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'interactiveMaterial
-
-    31684'
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 5f40827b2f61443aadfffd6a755d79df, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &124627354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1778,6 +1750,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textContainer: {fileID: 475199396}
   text: "Give out 1 drink to\_all other players."
+  questionIndex: 0
 --- !u!212 &178850679
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2086,7 +2059,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1443322960}
+  - {fileID: 2114877868}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2173,7 +2146,7 @@ Transform:
   m_Children:
   - {fileID: 1466126513}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &243784634
 GameObject:
@@ -2490,6 +2463,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textContainer: {fileID: 1251568539}
   text: Give out 1 shot to one player.
+  questionIndex: 0
 --- !u!212 &269183835
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2897,6 +2871,140 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280408265}
+  m_CullTransparentMesh: 1
+--- !u!1 &314218026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 314218027}
+  - component: {fileID: 314218029}
+  - component: {fileID: 314218028}
+  m_Layer: 5
+  m_Name: answer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &314218027
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314218026}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 1135144271}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -519}
+  m_SizeDelta: {x: 430.323, y: 130.607}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &314218028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314218026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: aaaaaa
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: a0c5e772146961d4986bff84087cf562, type: 2}
+  m_sharedMaterial: {fileID: -8084686839811895674, guid: a0c5e772146961d4986bff84087cf562, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 55
+  m_fontSizeBase: 55
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 54.284546}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &314218029
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314218026}
   m_CullTransparentMesh: 1
 --- !u!1 &316016715
 GameObject:
@@ -3343,35 +3451,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!21 &397421051
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'normalMaterial
-
-    31514'
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 34a62ccdc5a84390ba28b50c5e1da067, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &411035580
 GameObject:
   m_ObjectHideFlags: 0
@@ -4121,7 +4200,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &501435170
 GameObject:
@@ -4944,7 +5023,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.91473943}
-  m_AnchoredPosition: {x: 0, y: 7.834}
+  m_AnchoredPosition: {x: 0, y: 7.8339996}
   m_SizeDelta: {x: -66.289, y: 15.671}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &551120953
@@ -5072,6 +5151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textContainer: {fileID: 1389823055}
   text: Kiss the homies goodnight, or drink.
+  questionIndex: 0
 --- !u!212 &558486028
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5627,9 +5707,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 79950164}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &599340015
 GameObject:
@@ -6298,7 +6379,7 @@ Transform:
   - {fileID: 362017210}
   - {fileID: 1713343022}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &654470051
 MonoBehaviour:
@@ -6575,6 +6656,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textContainer: {fileID: 1853590508}
   text: Jump on one leg 10 times. If you fail take one drink.
+  questionIndex: 0
 --- !u!212 &670556009
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6707,7 +6789,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &692518945
 GameObject:
@@ -7425,6 +7507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textContainer: {fileID: 1646749991}
   text: 'Show the audience those hips: dance like Shakira, or drink.'
+  questionIndex: 0
 --- !u!212 &790644749
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7692,7 +7775,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &818573708
 GameObject:
@@ -7911,6 +7994,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textContainer: {fileID: 579256811}
   text: Swing Game
+  questionIndex: 0
 --- !u!212 &820279538
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8703,6 +8787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textContainer: {fileID: 316016715}
   text: "Stand up, face the wall and shout \u201CLong live the king!\u201D or drink."
+  questionIndex: 0
 --- !u!212 &937514070
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9640,7 +9725,7 @@ RectTransform:
   m_Children:
   - {fileID: 1322013610}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9821,7 +9906,7 @@ RectTransform:
   - {fileID: 952378067}
   - {fileID: 1725031534}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -10010,7 +10095,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 397421051}
+  - {fileID: 1667635850}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10146,6 +10231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textContainer: {fileID: 612153561}
   text: Give out 3 drinks to the player that drank the least.
+  questionIndex: 0
 --- !u!212 &1030232349
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10230,7 +10316,7 @@ Transform:
   - {fileID: 818573711}
   - {fileID: 539953960}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1038581754
 MonoBehaviour:
@@ -11300,6 +11386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textContainer: {fileID: 76805278}
   text: Text your dad that you love him, or drink.
+  questionIndex: 0
 --- !u!212 &1108433546
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11664,6 +11751,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textContainer: {fileID: 938155569}
   text: "Get in shape! Do 15 pushups. If you can\u2019t do it you drink!"
+  questionIndex: 0
 --- !u!212 &1124534613
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12198,13 +12286,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1135144271}
+  - component: {fileID: 1135144272}
   m_Layer: 5
   m_Name: Yes no screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1135144271
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12220,6 +12309,7 @@ RectTransform:
   - {fileID: 1832234150}
   - {fileID: 527142039}
   - {fileID: 1477683672}
+  - {fileID: 314218027}
   m_Father: {fileID: 1014376063}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12228,6 +12318,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0.00012207031, y: 0.5}
   m_SizeDelta: {x: 0, y: -1}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1135144272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135144270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e6b8b8d8844be4b90933d43ad8957f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardHolder: {fileID: 2068783859}
+  gameManager: {fileID: 79950161}
+  answer: {fileID: 314218028}
 --- !u!1 &1137158997
 GameObject:
   m_ObjectHideFlags: 0
@@ -12590,7 +12695,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 107994558}
+  - {fileID: 1220695398}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12677,7 +12782,7 @@ Transform:
   m_Children:
   - {fileID: 669452437}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1178839725
 GameObject:
@@ -13147,6 +13252,35 @@ RectTransform:
   m_AnchoredPosition: {x: 82, y: -135.96997}
   m_SizeDelta: {x: 402.031, y: 90.641}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!21 &1220695398
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'interactiveMaterial
+
+    162656'
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 5f40827b2f61443aadfffd6a755d79df, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &1221052132
 GameObject:
   m_ObjectHideFlags: 0
@@ -14627,35 +14761,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441646133}
   m_CullTransparentMesh: 1
---- !u!21 &1443322960
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'punishmentMaterial
-
-    30936'
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 2c1741b2e93c4ed0a902929d36be0a21, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1001 &1451034757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15735,7 +15840,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.070984, y: 0.055740356}
+  m_AnchoredPosition: {x: -2.0709229, y: 0.055740356}
   m_SizeDelta: {x: -66.289, y: -0.109}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1633297922
@@ -16451,6 +16556,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!21 &1667635850
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'normalMaterial
+
+    162476'
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 34a62ccdc5a84390ba28b50c5e1da067, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &1682973319
 GameObject:
   m_ObjectHideFlags: 0
@@ -16630,7 +16764,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.51776737}
   m_AnchorMax: {x: 1, y: 0.6134383}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0.00012207031, y: 0}
   m_SizeDelta: {x: 0, y: 0.000015259}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1692340404
@@ -16680,6 +16814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textContainer: {fileID: 971548537}
   text: Drink (water) from a bowl like a dog, or drink.
+  questionIndex: 0
 --- !u!212 &1692340407
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17216,6 +17351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textContainer: {fileID: 1157138901}
   text: 'Everyone else has to finish their drink. '
+  questionIndex: 0
 --- !u!212 &1748417147
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17314,6 +17450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textContainer: {fileID: 1135068526}
   text: 'Draw a dick on your forehead, or drink. '
+  questionIndex: 0
 --- !u!212 &1749319887
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19051,7 +19188,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1934854196
 GameObject:
@@ -19407,6 +19544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textContainer: {fileID: 1210751466}
   text: Balance Game
+  questionIndex: 0
 --- !u!212 &1977405946
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19492,7 +19630,7 @@ Transform:
   - {fileID: 1659480228}
   - {fileID: 124627355}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1991091767
 MonoBehaviour:
@@ -19837,6 +19975,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textContainer: {fileID: 73999806}
   text: Shake Game
+  questionIndex: 0
 --- !u!212 &2001958249
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19935,6 +20074,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textContainer: {fileID: 853221913}
   text: "You have 15 seconds to name 5 game genres. If you can\u2019t, take a drink. "
+  questionIndex: 0
 --- !u!212 &2016068496
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20376,6 +20516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textContainer: {fileID: 1128645362}
   text: "Touch your toes without bending your\_knees or take a drink."
+  questionIndex: 0
 --- !u!212 &2048426757
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21013,6 +21154,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108972089}
   m_CullTransparentMesh: 1
+--- !u!21 &2114877868
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'punishmentMaterial
+
+    161904'
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 2c1741b2e93c4ed0a902929d36be0a21, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &2123237350
 GameObject:
   m_ObjectHideFlags: 0

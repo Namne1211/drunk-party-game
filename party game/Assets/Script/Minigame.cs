@@ -8,7 +8,7 @@ public class Minigame : MonoBehaviour
     TextMeshPro tmp;
     public GameObject textContainer;
     public string text;
-
+    public int questionIndex;
 
     public void ChangeContent(string content)
     {

@@ -8,6 +8,7 @@ public class MiniGameManager : EditorWindow
 {
     public GameObject SampleCard;
     public Transform Holder;
+    int cardIndex;
     string cardContent;
     string cardContentShow;
 
@@ -35,7 +36,7 @@ public class MiniGameManager : EditorWindow
         }
         else
         {
-
+            cardIndex = EditorGUILayout.IntField("index", cardIndex);
             cardContent = EditorGUILayout.TextField("Context", cardContent);
             EditorGUILayout.BeginVertical("box");
             DrawButtonNormal();
@@ -83,6 +84,7 @@ public class MiniGameManager : EditorWindow
             newCard.transform.rotation = Holder.transform.rotation;
             Minigame card = newCard.GetComponent<Minigame>();
             card.ChangeContent(cardContent);
+            card.questionIndex = cardIndex;
             Selection.activeGameObject = card.gameObject;
             //card.gameObject.SetActive(false);
             cardContent = "";
@@ -93,9 +95,10 @@ public class MiniGameManager : EditorWindow
 
     void UpdateContent()
     {
+        
         Minigame card = Selection.activeGameObject.GetComponent<Minigame>();
         card.ChangeContent(cardContent);
-        
+        card.questionIndex = cardIndex;
     }
 
     void DeleteCard()

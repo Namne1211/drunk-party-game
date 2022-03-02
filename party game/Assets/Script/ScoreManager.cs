@@ -102,7 +102,7 @@ public class ScoreManager : MonoBehaviour
         }
 
         if(penaltyScoreScreen != null && ScoreScreen!=null)
-        penaltyupdatescreen();
+        //penaltyupdatescreen();
 
         turnCycle = 0;
         P1Score = 0;
