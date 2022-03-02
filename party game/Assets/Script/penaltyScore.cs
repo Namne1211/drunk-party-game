@@ -30,6 +30,7 @@ public class penaltyScore : MonoBehaviour
 
     void Update()
     {
+        if(scoreText.Count > 0)
         for (int i = 0; i < 4; i++)
         {
             scoreText[i].text = scoreList[i].ToString();
