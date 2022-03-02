@@ -84,6 +84,7 @@ public class MiniGameInstantiate : MonoBehaviour
     public void ARON()
     {
         scoreManager.PlayerIcon.SetActive(false);
+        
         if (PenaltyScreen.active == true)
         {
             if (prevActive != null)
@@ -92,7 +93,9 @@ public class MiniGameInstantiate : MonoBehaviour
             GameObject randomChild = PenaltyHolder.transform.GetChild(randomChildIdx).gameObject;
             prevActive = randomChild;
             randomChild.SetActive(true);
+            PenaltyScreen.SetActive(false);
             penaltystate = true;
+
         }
         if (ingame)
         {

@@ -12,12 +12,11 @@ public class penaltyIcon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GameManager != null)
             sm = GameManager.GetComponent<ScoreManager>();
     }
 
     // Update is called once per frame
-    private void OnEnable()
+    private void Update()
     {
         switch (sm.CurrentPlayer)
         {

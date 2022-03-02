@@ -106,6 +106,7 @@ public class acceleratorTest : MonoBehaviour
         startCountDown = true;
         win = false;
         winAble = true;
+        SoundManagerScript.PlaySound("countDown");
     }
 
     void swingGame()
@@ -150,6 +151,7 @@ public class acceleratorTest : MonoBehaviour
             {
                 if (character != null)
                 {
+
                     character.GetComponent<Animator>().SetBool("shake",false);
                 }                 
                 WinCounter = WinCounter;                
@@ -158,6 +160,7 @@ public class acceleratorTest : MonoBehaviour
             {
                 if (character != null)
                 {
+                    SoundManagerScript.PlaySound("shake");
                     character.GetComponent<Animator>().SetBool("shake", true);
                 }
                 WinCounter += Time.deltaTime;
@@ -166,6 +169,7 @@ public class acceleratorTest : MonoBehaviour
             {
                 if (character != null)
                 {
+                    SoundManagerScript.PlaySound("pop");
                     character.GetComponent<Animator>().SetTrigger("pop");
                 }
                 win = true;
