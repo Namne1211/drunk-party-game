@@ -102,7 +102,7 @@ public class ScoreManager : MonoBehaviour
         }
 
         if(penaltyScoreScreen != null && ScoreScreen!=null)
-        //penaltyupdatescreen();
+        penaltyupdatescreen();
 
         turnCycle = 0;
         P1Score = 0;
@@ -199,20 +199,16 @@ public class ScoreManager : MonoBehaviour
     {
         GameObject Player3pen = penaltyScoreScreen.transform.GetChild(penaltyScoreScreen.transform.childCount - 2).gameObject;
         GameObject Player4pen = penaltyScoreScreen.transform.GetChild(penaltyScoreScreen.transform.childCount - 1).gameObject;
-        GameObject Player3 = ScoreScreen.transform.GetChild(penaltyScoreScreen.transform.childCount - 2).gameObject;
-        GameObject Player4 = ScoreScreen.transform.GetChild(penaltyScoreScreen.transform.childCount - 1).gameObject;
 
         switch (CurrentPlayer)
         {
             case 2:
                 Player3pen.SetActive(false);
                 Player4pen.SetActive(false);
-                Player3.SetActive(false);
-                Player4.SetActive(false);
+
                 break;
             case 3:
                 Player4pen.SetActive(false);
-                Player4.SetActive(false);
                 break;
         }
             
