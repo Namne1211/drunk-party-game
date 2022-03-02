@@ -47,15 +47,11 @@ public class MiniGameInstantiate : MonoBehaviour
     GameObject prevActive;
     ScoreManager scoreManager;
 
-    private void Awake()
-    {
-        ARCam.SetActive(false);
-    }
     private void Start()
     {
         scoreManager = GetComponent<ScoreManager>();
         runCycle();
-        
+        ARCam.SetActive(false);
     }
     private void Update()
     {

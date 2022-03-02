@@ -83,8 +83,6 @@ public class ScoreManager : MonoBehaviour
             PlayerIcon.transform.GetChild(0).gameObject.SetActive(true);
             prevPlayerIcon = PlayerIcon.transform.GetChild(0).gameObject;
         }
-        
-
 
         ingameName1 = P1name;
         ingameName2 = P2name;
