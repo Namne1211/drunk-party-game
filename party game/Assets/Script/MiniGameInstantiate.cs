@@ -203,11 +203,16 @@ public class MiniGameInstantiate : MonoBehaviour
     }
     void runCycle()
     {
-
+        GameObject randomChild;
+        int prevIndex=0;
+        int randomChildIdx=0;
         if (prevActive != null)
             prevActive.SetActive(false);
-        int randomChildIdx = Random.Range(0, Holder.transform.childCount);
-        GameObject randomChild = Holder.transform.GetChild(randomChildIdx).gameObject;
+
+        while(prevIndex  == randomChildIdx)
+        randomChildIdx = Random.Range(0, Holder.transform.childCount);
+        randomChild = Holder.transform.GetChild(randomChildIdx).gameObject;
+        
         if (randomChild.GetComponent<Minigame>() != null)
         {
             Currentinteractive = "";
@@ -220,6 +225,7 @@ public class MiniGameInstantiate : MonoBehaviour
             normalText.SetActive(false);
             interactiveText.SetActive(true);
         }
+        prevIndex=randomChildIdx;
         prevActive = randomChild;
         randomChild.SetActive(true);
     }

@@ -115,6 +115,7 @@ public class acceleratorTest : MonoBehaviour
         {
             if (Input.acceleration.sqrMagnitude > 60f && winAble)
             {
+                SoundManagerScript.PlaySound("Breaks");
                 if(character!=null)
                     character.GetComponent<Animator>().SetTrigger("Win");
                 win = true;
@@ -209,6 +210,7 @@ public class acceleratorTest : MonoBehaviour
                 (balanceObj.transform.eulerAngles.z < 360 - loseRate && balanceObj.transform.eulerAngles.z > 180)
                 && winAble)
             {
+                SoundManagerScript.PlaySound("BalanceLose");
                 timeLeft = 0;
                 win = false;               
                 winAble = false;
@@ -216,6 +218,7 @@ public class acceleratorTest : MonoBehaviour
             }
         }else if(timeLeft<0 && winAble==true)
         {
+            SoundManagerScript.PlaySound("BalanceWin");
             win = true;
             GameManager.GetComponent<MiniGameInstantiate>().Done();
             winAble = false;

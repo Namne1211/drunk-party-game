@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundManagerScript : MonoBehaviour
 {
-    public static AudioClip addPlayer,menuClick,takeDrink,pop,shake,countDown;
+    public static AudioClip addPlayer,menuClick,takeDrink,pop,shake,countDown,BDrum,Bwin,Blose,breaks;
     static AudioSource audioSrc;
     void Start()
     {
@@ -14,6 +14,10 @@ public class SoundManagerScript : MonoBehaviour
         pop = Resources.Load<AudioClip>("Audio/Pop");
         shake = Resources.Load<AudioClip>("Audio/Shake");
         countDown = Resources.Load<AudioClip>("Audio/countDown");
+        BDrum = Resources.Load<AudioClip>("Audio/BalanceDrum");
+        Blose = Resources.Load<AudioClip>("Audio/BalanceWin");
+        Bwin = Resources.Load<AudioClip>("Audio/BalanceLose");
+        breaks = Resources.Load<AudioClip>("Audio/Breaks");
         audioSrc = GetComponent<AudioSource>();
     }
 
@@ -49,6 +53,22 @@ public class SoundManagerScript : MonoBehaviour
                 break;
             case "countDown":
                 audioSrc.PlayOneShot(countDown);
+                audioSrc.loop = false;
+                break;
+            case "BalanceDrum":
+                audioSrc.PlayOneShot(BDrum);
+                audioSrc.loop = true;
+                break;
+            case "BalanceWin":
+                audioSrc.PlayOneShot(Bwin);
+                audioSrc.loop = false;
+                break;
+            case "BalanceLose":
+                audioSrc.PlayOneShot(Blose);
+                audioSrc.loop = false;
+                break;
+            case "Breaks":
+                audioSrc.PlayOneShot(breaks);
                 audioSrc.loop = false;
                 break;
         }
