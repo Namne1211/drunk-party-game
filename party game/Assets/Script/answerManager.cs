@@ -28,34 +28,34 @@ public class answerManager : MonoBehaviour
                     answer.text = "";
                     break;
                 case 1:
-                    answer.text = "";
+                    answer.text = "World Wide Web";
                     break;
                 case 2:
-                    answer.text = "";
+                    answer.text = "Asia, Africa, North America, South America, Antarctica, Europe and Australia";
                     break;
                 case 3:
-                    answer.text = "";
+                    answer.text = "Nile";
                     break;
                 case 4:
-                    answer.text = "";
+                    answer.text = "Coca-Cola";
                     break;
                 case 5:
-                    answer.text = "";
+                    answer.text = "Vatican";
                     break;
                 case 6:
-                    answer.text = "";
+                    answer.text = "Honey";
                     break;
                 case 7:
-                    answer.text = "";
+                    answer.text = "Venus";
                     break;
                 case 8:
-                    answer.text = "";
+                    answer.text = "Alfred";
                     break;
                 case 9:
-                    answer.text = "";
+                    answer.text = "Vodka";
                     break;
                 case 10:
-                    answer.text = "";
+                    answer.text = "National Aeronautics and Space Administration";
                     break;
             }
         }
