@@ -27,12 +27,12 @@ public class soundPlayer : MonoBehaviour
         if(musicSrc != null)
         if (musicPlay == false)
         {
-            musicSrc.SetActive(false);
+            musicSrc.GetComponent<AudioSource>().mute=true;
         }
         if(effectSrc != false)
         if(effectPlay == false)
         {
-            effectSrc.SetActive(false);
+                effectSrc.GetComponent<AudioSource>().mute = true;
         }
         Debug.Log(musicPlay);
     }

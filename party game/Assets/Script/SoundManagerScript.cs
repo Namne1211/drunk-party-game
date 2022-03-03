@@ -6,11 +6,7 @@ using UnityEngine.UI;
 public class SoundManagerScript : MonoBehaviour
 {
     public static AudioClip addPlayer,menuClick,takeDrink,pop,shake,countDown,BDrum,Bwin,Blose,breaks;
-    public bool musicPlay;
-    public bool effectPlay;
     static AudioSource audioSrc;
-    public GameObject gameMusic;
-    public GameObject gameEffect;
     void Start()
     {
         addPlayer = Resources.Load<AudioClip>("Audio/addPlayer");
