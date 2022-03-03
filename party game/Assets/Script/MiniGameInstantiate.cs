@@ -47,7 +47,7 @@ public class MiniGameInstantiate : MonoBehaviour
     public GameObject continueButton;
     GameObject prevActive;
     ScoreManager scoreManager;
-
+    
     private void Start()
     {
         scoreManager = GetComponent<ScoreManager>();
@@ -251,11 +251,11 @@ public class MiniGameInstantiate : MonoBehaviour
     {
         GameObject randomChild;
         int prevIndex=0;
-        int randomChildIdx=0;
+        int randomChildIdx;
         if (prevActive != null)
             prevActive.SetActive(false);
-
-        while(prevIndex  == randomChildIdx)
+        randomChildIdx = Random.Range(0, Holder.transform.childCount);
+        while (prevIndex  == randomChildIdx)
         randomChildIdx = Random.Range(0, Holder.transform.childCount);
         randomChild = Holder.transform.GetChild(randomChildIdx).gameObject;
         

@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoundManagerScript : MonoBehaviour
 {
     public static AudioClip addPlayer,menuClick,takeDrink,pop,shake,countDown,BDrum,Bwin,Blose,breaks;
+    public bool musicPlay;
+    public bool effectPlay;
     static AudioSource audioSrc;
+    public GameObject gameMusic;
+    public GameObject gameEffect;
     void Start()
     {
         addPlayer = Resources.Load<AudioClip>("Audio/addPlayer");
@@ -19,9 +24,12 @@ public class SoundManagerScript : MonoBehaviour
         Bwin = Resources.Load<AudioClip>("Audio/BalanceLose");
         breaks = Resources.Load<AudioClip>("Audio/Breaks");
         audioSrc = GetComponent<AudioSource>();
+        
     }
-
+    
    
+
+
     void Update()
     {
         

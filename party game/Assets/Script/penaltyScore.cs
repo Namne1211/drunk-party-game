@@ -7,17 +7,12 @@ public class penaltyScore : MonoBehaviour
 {
     public List<TextMeshProUGUI> scoreText= new List<TextMeshProUGUI>();
 
-    List<int> scoreList;
+    public List<int> scoreList = new List<int>();
 
 
     // Start is called before the first frame update
     void Start()
     {
-        scoreList = new List<int>();
-        scoreList.Add(0);
-        scoreList.Add(0);
-        scoreList.Add(0);
-        scoreList.Add(0);
     }
 
     private void OnEnable()

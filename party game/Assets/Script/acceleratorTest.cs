@@ -98,6 +98,7 @@ public class acceleratorTest : MonoBehaviour
                     break;
                 case 3:    
                     BalanceGame();
+
                     break;
             }
         }
