@@ -29,14 +29,20 @@ public class acceleratorTest : MonoBehaviour
     public GameObject character;
     public GameObject StartButton;
     public GameObject BackButton;
+
+    AudioSource audioSrc;
     // Start is called before the first frame update
     void Start()
     {
+        audioSrc = GetComponent<AudioSource>();
+
+        
         //GameStart();
     }
 
     private void OnEnable()
     {
+        
         manual.SetActive(true);
         WinCounter =0;
         if(balanceObj!=null)
@@ -89,8 +95,14 @@ public class acceleratorTest : MonoBehaviour
                 case 2:
                     shakeGame();
                     break;
-                case 3:
+                case 3:    
                     BalanceGame();
+
+                    
+                    if (GetComponent<AudioSource>().isPlaying)
+                    {
+                        Debug.Log("yes");
+                    }
                     break;
             }
         }
@@ -101,6 +113,12 @@ public class acceleratorTest : MonoBehaviour
 
     public void GameStart()
     {
+
+        if (audioSrc != null)
+        {
+            audioSrc.PlayDelayed(2f);
+            audioSrc.loop = true;
+        }
         manual.SetActive(false);
         StartButton.SetActive(false);
         startCountDown = true;
@@ -160,13 +178,29 @@ public class acceleratorTest : MonoBehaviour
             else
             {
                 if (character != null)
-                {
-                    SoundManagerScript.PlaySound("shake");
+                {                     
                     character.GetComponent<Animator>().SetBool("shake", true);
                 }
+               
                 WinCounter += Time.deltaTime;
             }
-            if(WinCounter > 5f && winAble)
+            if (Input.acceleration.sqrMagnitude > 2f)
+            {
+                if(audioSrc != null)
+                {
+                    if (audioSrc.isPlaying == false)
+                    {
+                        audioSrc.Play();
+                    }
+                }
+                
+            }
+            else
+            {
+                audioSrc.Stop();
+            }
+
+            if (WinCounter > 5f && winAble)
             {
                 if (character != null)
                 {
@@ -210,18 +244,30 @@ public class acceleratorTest : MonoBehaviour
                 (balanceObj.transform.eulerAngles.z < 360 - loseRate && balanceObj.transform.eulerAngles.z > 180)
                 && winAble)
             {
-                SoundManagerScript.PlaySound("BalanceLose");
+                
+                SoundManagerScript.PlaySound("BalanceWin");
                 timeLeft = 0;
                 win = false;               
-                winAble = false;
+                winAble = false;    
                 GameManager.GetComponent<MiniGameInstantiate>().NotDone();
+                if (audioSrc != null)
+                {
+                    audioSrc.Stop();
+                }
+
             }
-        }else if(timeLeft<0 && winAble==true)
+        }
+        else if(timeLeft<0 && winAble==true)
         {
-            SoundManagerScript.PlaySound("BalanceWin");
+            
+            SoundManagerScript.PlaySound("BalanceLose");
             win = true;
             GameManager.GetComponent<MiniGameInstantiate>().Done();
             winAble = false;
+            if (audioSrc != null)
+            {
+                audioSrc.Stop();
+            }
         }
 
         if (winAble == false)
