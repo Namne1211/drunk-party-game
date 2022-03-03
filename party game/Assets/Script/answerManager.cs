@@ -9,6 +9,7 @@ public class answerManager : MonoBehaviour
     public GameObject cardHolder;
     public GameObject gameManager;
     public TextMeshProUGUI answer;
+    public GameObject showAnswerButton;
     MiniGameInstantiate mi;
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class answerManager : MonoBehaviour
             switch (cardHolder.GetComponentInChildren<Minigame>().questionIndex)
             {
                 case 0:
+                    
                     answer.text = "";
                     break;
                 case 1:
@@ -63,5 +65,19 @@ public class answerManager : MonoBehaviour
         {
             answer.text = "";
         }
+    }
+
+    private void OnEnable()
+    {
+        if (cardHolder.GetComponentInChildren<Minigame>().questionIndex != 0)
+        {
+            showAnswerButton.SetActive(true);
+            answer.gameObject.SetActive(false);
+        }
+        else
+        {
+            showAnswerButton.SetActive(false);
+        }
+        
     }
 }

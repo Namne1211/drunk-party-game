@@ -44,12 +44,14 @@ public class MiniGameInstantiate : MonoBehaviour
     public GameObject BalanceGame;
     public bool ingame;
     public bool penaltystate;
+    public GameObject continueButton;
     GameObject prevActive;
     ScoreManager scoreManager;
 
     private void Start()
     {
         scoreManager = GetComponent<ScoreManager>();
+        continueButton.SetActive(false);
         runCycle();
         ARCam.SetActive(false);
     }
@@ -84,8 +86,9 @@ public class MiniGameInstantiate : MonoBehaviour
 
     public void ARON()
     {
-        scoreManager.PlayerIcon.SetActive(false);
         
+        scoreManager.PlayerIcon.SetActive(false);
+        continueButton.SetActive(true);
         if (PenaltyScreen.active == true)
         {
             if (prevActive != null)
@@ -108,13 +111,31 @@ public class MiniGameInstantiate : MonoBehaviour
                     BalanceGameCard.SetActive(false);
                     break;
 
-                case "Shake Game":
+                case ("Shake Game"):
                     SwingGameCard.SetActive(false);
                     ShakeGameCard.SetActive(true);
                     BalanceGameCard.SetActive(false);
                     break;
 
                 case "Balance Game":
+                    SwingGameCard.SetActive(false);
+                    ShakeGameCard.SetActive(false);
+                    BalanceGameCard.SetActive(true);
+                    break;
+
+                case "Swing Game 1":
+                    SwingGameCard.SetActive(true);
+                    ShakeGameCard.SetActive(false);
+                    BalanceGameCard.SetActive(false);
+                    break;
+
+                case ("Shake Game 1"):
+                    SwingGameCard.SetActive(false);
+                    ShakeGameCard.SetActive(true);
+                    BalanceGameCard.SetActive(false);
+                    break;
+
+                case "Balance Game 1":
                     SwingGameCard.SetActive(false);
                     ShakeGameCard.SetActive(false);
                     BalanceGameCard.SetActive(true);
@@ -135,7 +156,7 @@ public class MiniGameInstantiate : MonoBehaviour
         
         UICam.SetActive(true);
         ARCam.SetActive(false);
-        
+        continueButton.SetActive(false);
 
         //case of penalty screen 
         if (ingame && penaltystate)
@@ -169,6 +190,30 @@ public class MiniGameInstantiate : MonoBehaviour
                     break;
 
                 case "Balance Game":
+                    BalanceGame.SetActive(true);
+                    cardScreen.SetActive(false);
+                    PenaltyScreen.SetActive(false);
+                    currentScreen.SetActive(false);
+                    GetComponent<ScoreManager>().PlayerIcon.SetActive(false);
+                    break;
+
+                case "Swing Game 1":
+                    SwingGame.SetActive(true);
+                    cardScreen.SetActive(false);
+                    PenaltyScreen.SetActive(false);
+                    currentScreen.SetActive(false);
+                    GetComponent<ScoreManager>().PlayerIcon.SetActive(false);
+                    break;
+
+                case "Shake Game 1":
+                    ShakeGame.SetActive(true);
+                    cardScreen.SetActive(false);
+                    PenaltyScreen.SetActive(false);
+                    currentScreen.SetActive(false);
+                    GetComponent<ScoreManager>().PlayerIcon.SetActive(false);
+                    break;
+
+                case "Balance Game 1":
                     BalanceGame.SetActive(true);
                     cardScreen.SetActive(false);
                     PenaltyScreen.SetActive(false);

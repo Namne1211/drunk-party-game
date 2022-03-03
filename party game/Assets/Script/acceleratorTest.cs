@@ -93,16 +93,11 @@ public class acceleratorTest : MonoBehaviour
                     swingGame();
                     break;
                 case 2:
+                    character.GetComponent<Animator>().SetBool("shake", false);
                     shakeGame();
                     break;
                 case 3:    
                     BalanceGame();
-
-                    
-                    if (GetComponent<AudioSource>().isPlaying)
-                    {
-                        Debug.Log("yes");
-                    }
                     break;
             }
         }
